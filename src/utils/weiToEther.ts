@@ -1,0 +1,1 @@
+export const weiToEther = (wei: string): number => parseFloat(wei) / 1e18;
