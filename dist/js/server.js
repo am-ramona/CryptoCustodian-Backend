@@ -11,38 +11,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const database_1 = __importDefault(require("./config/database")); // Import your Sequelize instance
-const dotenv_1 = __importDefault(require("dotenv"));
-const cors_1 = __importDefault(require("cors"));
+const database_1 = __importDefault(require("./config/database"));
 const routes_1 = __importDefault(require("./routes"));
 const walletTransactions_1 = require("./controllers/walletTransactions");
+const dotenv_1 = __importDefault(require("dotenv"));
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 const PORT = process.env.PORT || 4000;
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-// app.use(express.urlencoded({ extended: true }))
 app.use(routes_1.default);
+// Define routes
+app.get('/wallet-transactions', walletTransactions_1.getWalletTransactions);
 // Catch-all route to handle undefined routes
 app.use((req, res) => {
     res.status(404).json({ message: 'API route not found' });
 });
-// Create a server and pass Express app to handle requests
-// const server = createServer((req: IncomingMessage, res: ServerResponse) => {
-//   // app(req as Request, res as Response);
-//   app.handle(req, res); 
-// });
-app.get('/wallet-transactions', walletTransactions_1.getWalletTransactions);
-const walletTransactions_2 = __importDefault(require("./models/walletTransactions"));
-(_a = walletTransactions_2.default.sequelize) === null || _a === void 0 ? void 0 : _a.sync().then(() => {
-    app.listen(PORT, () => {
-        console.log(`db sync, Server running on http://localhost:${PORT}`);
-    });
-});
-// Sync models and start server
+// Sync models
 const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Synchronize all defined models to the DB
@@ -57,4 +45,5 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
         console.error('Unable to sync database:', error);
     }
 });
-// startServer();
+// Start server
+startServer();

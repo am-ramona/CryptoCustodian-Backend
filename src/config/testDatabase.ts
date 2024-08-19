@@ -1,5 +1,5 @@
-import sequelize from './database'
-import Transaction from '../models/walletTransactions'
+import sequelize from './database';
+import Transaction from '../models/walletTransactions';
 
 async function testDatabase() {
   try {

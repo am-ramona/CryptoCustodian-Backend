@@ -1,9 +1,20 @@
 import {
     EtherscanTransaction,
-    SmartContractMetrics,
-} from "../types"
+    TokenPortfolioItem
+} from "../types";
 
-export function calculatePortfolio(transactions: EtherscanTransaction[]) {
+/**
+ * Calculates the total portfolio value from an array of Etherscan transactions.
+ * @param {EtherscanTransaction[]} transactions - An array of transaction objects from Etherscan. Each transaction
+ * should include the token's name, symbol, value (in smallest unit), and decimal precision.
+ * @returns An array of objects, each representing a token in the portfolio. Each object
+ * contains:
+ *   - `amount` (number): The total amount of the token, converted to its standard unit.
+ *   - `symbol` (string): The symbol of the token (e.g., 'ETH', 'USDT').
+ *   - `name` (string, optional): The name of the token (e.g., 'Ethereum', 'Tether').
+ */
+
+export function calculatePortfolio(transactions: EtherscanTransaction[]): TokenPortfolioItem[] {
     const portfolio = transactions.reduce(
         (
             acc: Record<string, { amount: number; symbol: string; name?: string }>,

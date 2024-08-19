@@ -12,6 +12,6 @@
       "skipLibCheck": true
     },
     "include": ["src/**/*", "server.ts"],
-    "exclude": ["src/types/*.ts", "node_modules", ".vscode"]
+    "exclude": ["__Tests__/*.ts", "node_modules", ".vscode", "**/*.test.ts", "**/*.test.tsx", "jest.config.js"]
   }
   

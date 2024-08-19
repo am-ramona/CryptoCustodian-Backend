@@ -1,8 +1,8 @@
-import { Router } from "express"
-import { getWalletTransactions } from "../controllers/walletTransactions"
+import { Router } from "express";
+import { getWalletTransactions } from "../controllers/walletTransactions";
 
-const router: Router = Router()
+const router: Router = Router();
 
-router.get("/getWalletTransactions", getWalletTransactions)
+router.get("/getWalletTransactions", getWalletTransactions);
 
-export default router
+export default router;

@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes } from 'sequelize';
-import path from 'path'
+import path from 'path';
 
 // Initialize Sequelize with SQLite
 const sequelize = new Sequelize({
@@ -9,15 +9,13 @@ const sequelize = new Sequelize({
   logging: (msg) => console.log(`Sequelize Log: ${msg}`), // Custom logging function
 });
 
-// const sequelize = new Sequelize('sqlite::memory:'); // Example for SQLite
+// Or const sequelize = new Sequelize('sqlite::memory:'); // Example for SQLite
 
-// Initialize Sequelize with SQLite : Passing parameters separately (other dialects)
+// Or Initialize Sequelize with SQLite : Passing parameters separately (other dialects)
 // const sequelize = new Sequelize('database', 'username', 'password', {
 //   host: 'localhost',
 //   dialect: 'sqlite'
 // });
-
-// module.exports = sequelize;
 
 // Test the connection
 sequelize.authenticate()

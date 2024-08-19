@@ -12,13 +12,12 @@ const sequelize = new sequelize_1.Sequelize({
     //   storage: 'database.sqlite3', // Path to your SQLite database file
     logging: (msg) => console.log(`Sequelize Log: ${msg}`), // Custom logging function
 });
-// const sequelize = new Sequelize('sqlite::memory:'); // Example for SQLite
-// Initialize Sequelize with SQLite : Passing parameters separately (other dialects)
+// Or const sequelize = new Sequelize('sqlite::memory:'); // Example for SQLite
+// Or Initialize Sequelize with SQLite : Passing parameters separately (other dialects)
 // const sequelize = new Sequelize('database', 'username', 'password', {
 //   host: 'localhost',
 //   dialect: 'sqlite'
 // });
-// module.exports = sequelize;
 // Test the connection
 sequelize.authenticate()
     .then(() => {

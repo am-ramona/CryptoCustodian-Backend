@@ -24,74 +24,14 @@ const Transaction = database_1.default.define('walletTransactionsDatabase', {
     gasUsed: sequelize_1.DataTypes.STRING,
     gasPrice: sequelize_1.DataTypes.STRING,
     input: sequelize_1.DataTypes.STRING,
-}
-// , {
-//   // Model options
-//   tableName: 'transactions',
-//   timestamps: true,
-//   hooks: {
-//       afterCreate: (instance) => {
-//           console.log(`Transaction created: ${JSON.stringify(instance.toJSON())}`);
-//       }
-//   }
-// }
-);
-// class Transaction extends Model {
-//   public id!: number;
-//   public from!: string;
-//   public to!: string;
-//   public value!: string;
-//   public tokenName!: string;
-//   public tokenSymbol!: string;
-//   public tokenDecimal!: string;
-//   public gasUsed!: string;
-//   public gasPrice!: string;
-//   public timeStamp!: string;
-//   public input!: string;
-// }
-// Transaction.init({
-//   from: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-//   to: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-//   value: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-//   tokenName: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-//   tokenSymbol: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-//   tokenDecimal: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-//   gasUsed: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-//   gasPrice: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-//   timeStamp: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-//   input: {
-//     type: DataTypes.STRING,
-//     allowNull: false,
-//   },
-// }, {
-//   sequelize,
-//   modelName: 'Transaction',
-// });
+}, {
+    // Model options
+    tableName: 'walletTransactionsDatabase',
+    timestamps: true,
+    hooks: {
+        afterCreate: (instance) => {
+            console.log(`Transaction created: ${JSON.stringify(instance.toJSON())}`);
+        }
+    }
+});
 exports.default = Transaction;

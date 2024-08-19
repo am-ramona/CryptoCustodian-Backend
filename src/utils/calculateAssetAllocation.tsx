@@ -1,4 +1,4 @@
-import { EtherscanTransaction } from "../types"
+import { EtherscanTransaction } from "../types";
 
 /**
  * Calculates the asset allocation based on a list of transactions.

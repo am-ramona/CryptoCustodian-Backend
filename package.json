@@ -12,6 +12,7 @@
   "author": "Ramona Abi-Moussa",
   "license": "ISC",
   "dependencies": {
+    "@types/jest": "^29.5.12",
     "@types/node": "^22.3.0",
     "@types/node-fetch": "^2.6.11",
     "@types/sequelize": "^4.28.20",

@@ -19,6 +19,12 @@ const walletTransactions_1 = __importDefault(require("../../models/walletTransac
 dotenv_1.default.config();
 const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
+/**
+ * Fetches transaction data from the Etherscan API using the provided contract address and API key.
+ *
+ * @param {NextRequest} request - The request object containing information about the incoming request.
+ * @returns {NextResponse} - The response object containing portfolio, asset allocation, and performance metrics.
+ */
 const getWalletTransactions = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const url = `https://api.etherscan.io/api?module=account&action=tokentx&address=${CONTRACT_ADDRESS}&apikey=${ETHERSCAN_API_KEY}`;
@@ -28,23 +34,6 @@ const getWalletTransactions = (req, res) => __awaiter(void 0, void 0, void 0, fu
             throw new Error(`Error fetching data: ${data.message || response.statusText}`);
         }
         const transactions = data.result;
-        // console.log('transactions', transactions);
-        // console.log('type of transactions', typeof transactions);
-        // Example with async/await
-        // function example() {
-        //     try {
-        //         for (const key in transactions) {
-        //             if (transactions.hasOwnProperty(key)) {
-        //                 console.log(`Key: ${key}`);
-        //                 console.log(`Key: ${key}, Type: ${typeof transactions[key]}`);
-        //             }
-        //         }
-        //         console.log('transactions loaded operation successful');
-        //     } catch (error) {
-        //         console.error('Error:', error);
-        //     }
-        // }
-        // example();
         // Save transactions to the database
         const savedTransactions = yield walletTransactions_1.default.bulkCreate(transactions.map((tx) => ({
             from: tx.from,
@@ -58,7 +47,6 @@ const getWalletTransactions = (req, res) => __awaiter(void 0, void 0, void 0, fu
             timeStamp: tx.timeStamp,
             input: tx.input,
         })));
-        console.log('Saved transactions:', savedTransactions);
         // Calculate portfolio, asset allocation, and performance metrics
         const portfolio = (0, utils_1.calculatePortfolio)(transactions);
         const allocation = (0, utils_1.calculateAssetAllocation)(transactions);
